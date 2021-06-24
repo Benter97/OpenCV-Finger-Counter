@@ -28,11 +28,18 @@ while True:
     lmList = detector.findPosition(img, draw=False, handNumber=0)
     if len(lmList) != 0:
         fingers = []
-        # Thumb
-        if lmList[tipIDs[0]][1] > lmList[tipIDs[0] - 1][1]:
-            fingers.append(1)
+        if lmList[1][1] > lmList[17][1]:
+            # Thumb
+            if lmList[tipIDs[0]][1] > lmList[tipIDs[0] - 1][1]:
+                fingers.append(1)
+            else:
+                fingers.append(0)
         else:
-            fingers.append(0)
+            # Thumb
+            if lmList[tipIDs[0]][1] < lmList[tipIDs[0] - 1][1]:
+                fingers.append(1)
+            else:
+                fingers.append(0)
 
         # Other fingers
         for id in range(1, 5):
